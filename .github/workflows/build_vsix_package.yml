@@ -24,17 +24,27 @@ jobs:
       uses: actions-rs/toolchain@v1.0.6
       with:
         toolchain: stable
+        target: wasm32-unknown-unknown
 
     - name: Prepare wasm-pack
       uses: jetli/wasm-pack-action@v0.4.0
 
     - name: NPM Install
-      run:  npm install
+      run: npm install
 
-    - name: Build
-      run:  npm i -g vsce && vsce package
+    - name: List Files Before Build
+      run: ls -la
 
-    # - name: Upload
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     path: ${{ github.workspace }}/*.vsix
+    - name: Build Package
+      run: |
+        npm i -g @vscode/vsce
+        vsce package --no-yarn -o pullhero.vsix
+        
+    - name: List Files After Build
+      run: ls -la *.vsix
+
+    - name: Upload VSIX Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: pullhero-vsix
+        path: pullhero.vsix

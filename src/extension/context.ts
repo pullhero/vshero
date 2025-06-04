@@ -34,22 +34,29 @@ export class ExtensionContext implements IExtensionContext {
         options: RustProgressOptions,
         callback: (progress: IProgress, signal: AbortSignal) => Thenable<any>
     ): Thenable<any> {
-        return vscode.window.withProgress(options, async (progress, token) => {
-            const abortController = new AbortController();
-            token.onCancellationRequested(() => {
-                abortController.abort();
-            });
-            const wrappedProgress = {
-                report(message?: string) {
-                    progress.report({ message });
-                },
-            } as IProgress;
-            try {
-                await callback(wrappedProgress, abortController.signal);
-            } catch (e) {
-                console.error(e);
+        return vscode.window.withProgress(
+            {
+                location: vscode.ProgressLocation.Notification,
+                title: options.title,
+                cancellable: options.cancellable
+            },
+            async (progress, token) => {
+                const abortController = new AbortController();
+                token.onCancellationRequested(() => {
+                    abortController.abort();
+                });
+                const wrappedProgress = {
+                    report(message?: string) {
+                        progress.report({ message });
+                    },
+                } as IProgress;
+                try {
+                    await callback(wrappedProgress, abortController.signal);
+                } catch (e) {
+                    console.error(e);
+                }
             }
-        });
+        );
     }
 
     showInformationMessage(
