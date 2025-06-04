@@ -1,3 +1,8 @@
+# This is a CodeCursor fork
+
+This will provide PUllHero's features
+in VS.
+
 # CodeCursor (Cursor for Visual Studio Code)
 
 **Use Cursor right in the editor you love!**
