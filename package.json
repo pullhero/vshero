@@ -1,12 +1,12 @@
 {
-    "name": "aicursor",
+    "name": "pullhero",
     "displayName": "CodeCursor (Cursor for VS Code)",
     "description": "Cursor integration for Visual Studio Code",
     "version": "0.5.3",
-    "publisher": "ktiays",
+    "publisher": "pullhero",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Helixform/CodeCursor"
+        "url": "https://github.com/pullhero/vshero"
     },
     "icon": "icon.png",
     "engines": {
