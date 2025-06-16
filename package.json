@@ -2,7 +2,7 @@
     "name": "pullhero",
     "displayName": "PullHero for VS Code",
     "description": "PullHero integration for Visual Studio Code",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "publisher": "pullhero",
     "repository": {
         "type": "git",
